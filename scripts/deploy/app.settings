@@ -1,0 +1,5 @@
+debug false
+name Vue Desktop
+appName my-app
+description My Vue Desktop App 
+CefConfig { Width:1037, Height:770 }

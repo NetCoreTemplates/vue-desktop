@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="/favicon.png" rel="icon">
+    <link rel="stylesheet" href="/lib/css/bootstrap/bootstrap.css">
+    <title>{{ title ?? 'Sharp Data' }}</title>
+</head>
+<body>
+{{ 'buttons,buttons-svg' |> cssIncludes }}
+{{ 'app' |> cssIncludes |> svgFill('#444') }}
+
+{{#if fileExists('/bundle.css') }}
+    <link rel="stylesheet" href="/bundle.css">
+{{else}}
+    {{ 'content:/src/css/' |> bundleCss({ minify:false, cache:false, out:'/app.bundle.css' }) }}
+{{/if}}
+
+<style>
+{{ {
+'.home-nav':  ['home','#fff'],
+'.add-nav':   ['add','#fff'],
+'.loop-nav':  ['loop','#fff'],
+} |> toList |> map => `${it.Key} { ${it.Value[0].svgBackgroundImageCss(it.Value[1])} }` |> joinln |> raw }}
+
+.text-close::after { content:'\00D7'; }
+</style>
+
+<i hidden>{{ '/js/hot-fileloader.js' |> ifDebugIncludeScript }}</i>
+<script>
+CONFIG = {
+  debug:    {{ debugMode |> json }},
+  desktop:  {{ desktopInfo |> json }}
+}
+</script>
+
+<noscript>You need to enable JavaScript to run this app.</noscript>
+
+{{page}}
+
+{{ [
+    `/lib/js/vue/vue.min.js`,
+    `/lib/js/vue-router/vue-router.min.js`,
+    `/lib/js/vue-class-component/vue-class-component.min.js`,
+    `/lib/js/vue-property-decorator/vue-property-decorator.min.js`,
+    `/lib/js/@servicestack/desktop/servicestack-desktop.min.js`,
+    `/lib/js/@servicestack/client/servicestack-client.min.js`,
+    `/lib/js/@servicestack/vue/servicestack-vue.min.js`,
+] |> map => `<script src="${it}"></script>` |> joinln |> raw }}
+
+<script>
+var ALIASES = {
+    'vue': { default: Vue },
+    'vue-router': { default: VueRouter },
+    'vue-class-component': VueClassComponent,
+    'vue-property-decorator': VuePropertyDecorator,
+    '@servicestack/vue': ServiceStackVue
+};
+var global = window;
+window.exports = {};
+window.require = function(name) {
+    return ALIASES[name] || exports[name] || window[name] || exports;
+};
+Object.assign(window, window["@servicestack/desktop"], window["@servicestack/client"]);
+</script>
+
+{{#if fileExists('/bundle.js') }}
+<script src="/bundle.js"></script>
+{{else}}
+
+{{ [
+    'content:/src/components/',
+    'content:/src/shared/',
+    'content:/src/',
+] |> bundleJs({ minify:false, cache:false, iife:true, out:`/app.bundle.js` }) }}
+
+{{/if}}
+
+{{ scripts |> raw }}
+
+{{initError |> htmlError}}
+{{htmlError}}
+
+</body>
+</html>
