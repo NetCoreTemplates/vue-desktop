@@ -1,12 +1,12 @@
 {{ 
-    var AppSvgs = {
+    var MaterialIcons = {
         'action/home.svg':                    'home',
         'content/add.svg':                    'add',
         'av/loop.svg':                        'loop',
     } 
 }}
 
-{{#each AppSvgs}}
+{{#each MaterialIcons}}
     {{`/lib/svg/material/${it.Key}` |> svgAddFile(it.Value,'app')}}
 {{/each}}
 

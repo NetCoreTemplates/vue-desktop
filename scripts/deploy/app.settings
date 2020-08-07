@@ -1,5 +1,7 @@
 debug false
 name Vue Desktop
-appName my-app
-description My Vue Desktop App 
 CefConfig { Width:1037, Height:770 }
+
+# publish App Settings
+# appName my-app
+# desription My App Description (between 20-150 chars)
