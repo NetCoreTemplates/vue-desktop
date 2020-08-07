@@ -1,6 +1,7 @@
+@echo off
+rem Add GitHub Gist AccessToken GITHUB_TOKEN Environment variable or specify manually with: -token %TOKEN%
 COPY deploy\.publish ..\dist
-REM Add GitHub Gist AccessToken GITHUB_TOKEN Environment variable or use alt variable with: -token %VAR_WITH_TOKEN%
 PUSHD ..\dist
-x publish -token %VAR_WITH_TOKEN%
+x publish
 POPD
 COPY ..\dist\.publish deploy\
