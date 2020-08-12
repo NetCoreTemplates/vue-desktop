@@ -26,9 +26,7 @@ export class Home extends Vue {
 
     async nameChanged(name: string) {
         if (name) {
-            const request = new Hello();
-            request.name = name;
-            const r = await client.get(request);
+            const r = await client.get(new Hello({ name }));
             this.result = r.result;
         } else {
             this.result = '';
