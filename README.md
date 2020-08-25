@@ -7,10 +7,10 @@ deployed as [Gist Desktop Apps](https://sharpscript.net/sharp-apps/gist-desktop-
 ideal for quickly & effortlessly creating & deploying small to medium .NET Core Windows Desktop Apps 
 packaged within a Chromium Web Vue UI within minutes!
 
-Create new project with [x dotnet tool](https://docs.servicestack.net/dotnet-tool):
+Create new project with [app dotnet tool](https://docs.servicestack.net/netcore-windows-desktop):
 
-    $ dotnet tool install -g x
-    $ x new vue-desktop ProjectName
+    $ dotnet tool install -g app
+    $ app new vue-desktop ProjectName
 
 > YouTube: [youtu.be/kRnQSWdqH6U](https://youtu.be/kRnQSWdqH6U)
 
