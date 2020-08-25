@@ -393,7 +393,7 @@ which provides rich intelli-sense & type checking during development.
 
 Thanks to ServiceStack's [Add TypeScript Reference](https://docs.servicestack.net/typescript-add-servicestack-reference)
 feature, Types are also available for your C# Services which can be updated by running 
-[npm run dtos](https://github.com/NetCoreTemplates/vue-desktop/blob/9beb8944068e86c0393dda8b07fe56d1bd1aad41/package.json#L4) or `app ts` directly, e.g: 
+[npm run dtos](https://github.com/NetCoreTemplates/vue-desktop/blob/master/package.json#L4) or `app ts` directly, e.g: 
 
     $ app ts
 
