@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "tsc -w",
-    "dtos": "cd src\\shared && x ts",
+    "dtos": "cd src\\shared && app ts",
 
     "start": "app -debug start https://localhost:5001",
     "pack-app": "cd scripts && pack-app.bat",

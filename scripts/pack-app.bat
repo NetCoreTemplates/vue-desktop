@@ -2,7 +2,7 @@ PUSHD ..
 rd /q /s dist
 md dist\assets
 xcopy /E wwwroot\assets .\dist\assets\
-x run _bundle.ss -to /dist
+app run _bundle.ss -to /dist
 copy wwwroot\* dist
 copy scripts\deploy\app.settings dist
 

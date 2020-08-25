@@ -13,6 +13,6 @@
     </ItemGroup>
 
     <Target Name="Bundle" BeforeTargets="AfterPublish">
-        <Exec Command="x run _bundle.ss -to /bin/Release/netcoreapp3.1/publish/wwwroot" />
+        <Exec Command="app run _bundle.ss -to /bin/Release/netcoreapp3.1/publish/wwwroot" />
     </Target>
 </Project>
