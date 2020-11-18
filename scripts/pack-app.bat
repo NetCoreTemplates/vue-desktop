@@ -8,5 +8,5 @@ copy scripts\deploy\app.settings dist
 
 dotnet publish -c release
 md dist\plugins 
-copy bin\release\netcoreapp3.1\publish\MyApp.dll dist\plugins\
+copy bin\release\net5\publish\MyApp.dll dist\plugins\
 POPD

@@ -1,6 +1,6 @@
 # vue-desktop
 
-.NET Core 3.1 Vue Windows Desktop App Project Template.
+.NET 5.0 Vue Windows Desktop App Project Template.
 
 This Project Template lets you create .NET Core Vue Single Page Apps that can also be packaged & 
 deployed as [Gist Desktop Apps](https://sharpscript.net/sharp-apps/gist-desktop-apps) which is 
@@ -97,9 +97,9 @@ For the comparison we ran the `publish-app` script & Blazor's **Publish to Folde
 
 The end result that even our **enhanced** Blazor WASM starting project template is **413.8x** or **2.6x** orders of magnitude smaller than Blazor WASM.
 A more apt comparison of its tiny footprint, is the enhanced Vue Desktop App is roughly equivalent to 
-[Blazor WASM's 12kb partial screenshot of its App](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-3.1): 
+[Blazor WASM's 12kb partial screenshot of its App](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-5.0): 
 
-![](https://docs.microsoft.com/en-us/aspnet/core/blazor/index/_static/dialog.png?view=aspnetcore-3.1)
+![](https://docs.microsoft.com/en-us/aspnet/core/blazor/index/_static/dialog.png?view=aspnetcore-5.0)
 
 In addition, the `app` tool also bundles a Chromium Desktop App shell in order for your Vue Desktop Apps to appear like Native Desktop Apps, 
 to get the same experience with Blazor WASM App you would also need to manage the installation of a Chromium wrapper like 

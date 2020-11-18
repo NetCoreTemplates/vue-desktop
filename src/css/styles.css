@@ -19,6 +19,9 @@ a, .btn-link {
 .navbar-toggler {
     background-color: rgba(255, 255, 255, 0.1);
 }
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
 
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
