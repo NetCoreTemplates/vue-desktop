@@ -512,3 +512,86 @@ export class FetchData extends Vue {
     }
 }
 ```
+
+### Publishing Gist Apps
+
+As Vue Desktop Apps are so lightweight a flexible deployment option is to deploy it to GitHub gists where they can be launched directly from HTML links using the `app://` URL scheme.
+
+To create gists you'll need to generate a [GitHub Access Token](https://github.com/settings/tokens/new) with **gist** scope and add it to your `GITHUB_TOKEN` Environment Variable ([win](https://superuser.com/questions/949560/how-do-i-set-system-environment-variables-in-windows-10), [mac](https://apple.stackexchange.com/q/356441/12255), [linux](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-linux)). _(alternative: use `-token` arg in each publish command)_
+
+Before publishing our App, our **app.settings** looks something like:
+
+    debug true
+    name Spirals
+    CefConfig { width:1100, height:900 }
+
+### Publish to the world
+
+To maximize reach and accessibility of your App you can publish it to our [Global App Registry](https://gist.github.com/gistlyn/802daba52b6fe6e2ed1430348dc596cb) by including the following metadata about your App:
+
+    appName     <app alias>    # required: alpha-numeric snake-case characters only, 30 chars max
+    description <app summary>  # required: 20-150 chars
+    tags        <app tags>     # optional: space delimited, alpha-numeric snake-case, 3 tags max
+
+The `appName` is the globally unique short alias you want your App to be launched as, e.g:
+
+    app://my-alias
+    $ app open my-alias
+
+If your app.settings contains the app metadata above, publishing the app will publish your App to a Gist & register your App's alias to the Global App Directory.
+
+Now you can build, bundle and publish your App to a gist with its `publish-app` npm script:
+
+    $ npm run publish-app
+
+That returns the gist URL your app was published to:
+
+    published to: https://gist.github.com/gistlyn/48b2dcf9bccacab62ec9d8a073d5edb8
+
+Which can now be opened via an [URL scheme](https://sharpscript.net/sharp-apps/app-index#app-url-schemes): 
+
+<h4><a href="app://48b2dcf9bccacab62ec9d8a073d5edb8">app://48b2dcf9bccacab62ec9d8a073d5edb8</a></h4>
+
+Or via the command line:
+
+    $ app open 48b2dcf9bccacab62ec9d8a073d5edb8
+
+When your App is published the first time, the created gist URL will be saved in a local `.publish` text file & used for subsequent App publishes.
+
+By default the latest Sharp App version is automatically downloaded and run on-the-fly each time it's run to ensure it's always running the latest published version of your app, but you can also enable offline apps and speed up app start times by running the latest downloaded app using `app run` or the `app:` URL scheme, e.g:
+
+<h4><a href="app:48b2dcf9bccacab62ec9d8a073d5edb8">app:48b2dcf9bccacab62ec9d8a073d5edb8</a></h4>
+
+    $ app run 48b2dcf9bccacab62ec9d8a073d5edb8
+
+If an `appName` and `description` was specified, the publish script will also be published to our Global App Registry where it can be opened via the more human-friendly `appName`, e.g:
+
+<h4><a href="app://vuedesktop">app://vuedesktop</a></h4>
+
+    $ app open vuedesktop
+
+And be visible to everyone with the `app` tool installed by running:
+
+    $ app open
+
+### Publishing self-encapsulated exe
+
+Whilst our recommendation is to publish apps to gists where they can be launched using `app://` URL Schemes with auto updating, 
+you can also bundle & distribute the app tool with your App to allow it to be launched without needing the `app` dotnet tool installed:
+
+    $ md %USERPROFILE%\apps\vuedesktop && cd %USERPROFILE%\apps\vuedesktop
+    $ xcopy /E <project-path>\dist dist\ && cd dist
+    $ app --copy-self app
+    $ app shortcut -target "C:\Program Files\dotnet\dotnet.exe" ^
+      -arguments "^%USERPROFILE^%\apps\vuedesktop\app\app.dll ^%USERPROFILE^%\apps\vuedesktop\dist\app.settings" ^
+      -workdir "^%USERPROFILE^%\apps\vuedesktop\dist"
+
+Escaping `^%` will preserve the `%USERPROFILE%` environment variable within the shortcut, without it the shortcut will include your resolved home dir in its path.
+
+This will create a shortcut that will launch the app using your local `app` install instead of requiring users to install the `app` dotnet tool.
+
+The app can then be installed on other PC's by copying (or extracting) it to their `%USERPROFILE%\apps\vuedesktop` folder & the Shortcut copied to their Desktop for easy access.
+
+You can later change which launch command the Shortcut uses by changing the **Target** in the Shortcut's **Properties**:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/vue-desktop/vuedesktop-shortcut.png)
