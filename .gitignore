@@ -10,6 +10,7 @@ src/**/*.js
 *bundle.min.css
 *bundle.min.js
 dist/
+dist-exe/
 GPUCache
 
 # User-specific files (MonoDevelop/Xamarin Studio)
