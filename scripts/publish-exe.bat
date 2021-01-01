@@ -1,8 +1,10 @@
 @echo off
-call publish-app.bat
+if not exist ..\dist call pack-app.bat
 
 rd /q /s ..\dist-exe
-md ..\dist-exe\MyApp && cd ..\dist-exe
+md ..\dist-exe\MyApp
+
+pushd ..\dist-exe
 
 xcopy /e ..\dist MyApp\dist\
 
@@ -17,3 +19,7 @@ popd
 ..\scripts\7za.exe -tzip a MyApp.zip MyApp
 
 copy ..\scripts\install.ps1 .
+
+rd /q /s VueDesktop
+
+popd

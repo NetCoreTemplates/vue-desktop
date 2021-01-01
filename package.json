@@ -6,6 +6,7 @@
     "start": "app -debug start https://localhost:5001",
     "pack-app": "cd scripts && pack-app.bat",
     "publish-app": "cd scripts && publish-app.bat",
+    "publish-zip": "cd scripts && publish-zip.bat",
     "publish-exe": "cd scripts && publish-exe.bat"
   }
 }
