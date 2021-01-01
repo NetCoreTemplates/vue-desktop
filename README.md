@@ -513,19 +513,73 @@ export class FetchData extends Vue {
 }
 ```
 
+### Publishing Desktop Apps
+
+The lightweight footprint of Vue Desktop Apps allows for multiple deployment options, including:
+
+  1. Publish to Gist
+  2. Publish to GitHub Repo
+  3. Publish to .zip and run with `app` tool
+  4. Publish to self-contained .zip (bundled with app tool)
+
+Our recommendation is to publish Sharp Desktop Apps to Gists (as done with [ServiceStack Studio](https://docs.servicestack.net/studio)) so they can be launched with the Custom URL Scheme:
+
+    app://vuedesktop
+
+Where it can be launched from a HTML `<a/>` link in a web page, directly in any **browsers URL bar** or **File Explorer**.
+
+Desktop Apps published to GitHub repos can be opened using `<user>/<repo>`, e.g:
+
+    app://mythz/vuedesktop
+
+Where it downloads & extracts the latest Release `.zip` archive (or master if none), before running the app, so can take a little longer to launch for small Apps.
+
+All apps run the latest version by default so it's always up-to-date, but you can speed up App launch times by running the last installed app using the `app:` Custom URL Scheme:
+
+    app:vuedesktop
+
+For Gist deployed Apps, it will run the last downloaded app or download & run the latest App gist if it's the first time it's run.
+
+For GitHub repo Apps, you can download and install them locally with:
+
+    $ app install mythz/vuedesktop
+
+Where the downloaded version can be **run** using its `<repo>` name, e.g:
+
+    app:vuedesktop
+
+Both Gist and Desktop Apps can be uninstalled using `app uninstall`, e.g:
+
+    $ app uninstall vuedesktop
+
+To view all installed Sharp Apps, run:
+
+    $ app uninstall
+
+#### Creating Windows Shortcuts
+
+The `app:` URL Scheme is a convenient way to launch Apps if you already have a **Browser** or Windows **File Explorer** already open where you can quickly launch Apps by typing `CTRL+L` shortcut to go to the Command Bar then type  `app://<name>` to launch your App.
+
+Although many users will prefer the familiar Windows Shortcut which they can create by going to the App's folder and running `app shortcut`
+
+    $ cd %USERPROFILE%\.sharp-apps\vuedesktop
+    $ app shortcut
+
+This will create a Windows Shortcut for the App which can be copied to the Desktop or pinned to the Taskbar for easy access.
+
 ### Publishing Gist Apps
 
-As Vue Desktop Apps are so lightweight a flexible deployment option is to deploy it to GitHub gists where they can be launched directly from HTML links using the `app://` URL scheme.
+Publishing your App to a gist is our preferred option as you can use GitHub to host your App, built-in auto-updates with every each launch and if you publish to the Global App Registry users can download & install your App with a unique UX-friendly name like `app://vuedesktop`.
 
 To create gists you'll need to generate a [GitHub Access Token](https://github.com/settings/tokens/new) with **gist** scope and add it to your `GITHUB_TOKEN` Environment Variable ([win](https://superuser.com/questions/949560/how-do-i-set-system-environment-variables-in-windows-10), [mac](https://apple.stackexchange.com/q/356441/12255), [linux](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-linux)). _(alternative: use `-token` arg in each publish command)_
 
-Before publishing our App, our **app.settings** looks something like:
+Before publishing your App, its **app.settings** looks something like:
 
     debug true
-    name Spirals
+    name vuedesktop
     CefConfig { width:1100, height:900 }
 
-### Publish to the world
+#### Publish to the Global App Registry
 
 To maximize reach and accessibility of your App you can publish it to our [Global App Registry](https://gist.github.com/gistlyn/802daba52b6fe6e2ed1430348dc596cb) by including the following metadata about your App:
 
@@ -558,40 +612,106 @@ Or via the command line:
 
 When your App is published the first time, the created gist URL will be saved in a local `.publish` text file & used for subsequent App publishes.
 
-By default the latest Sharp App version is automatically downloaded and run on-the-fly each time it's run to ensure it's always running the latest published version of your app, but you can also enable offline apps and speed up app start times by running the latest downloaded app using `app run` or the `app:` URL scheme, e.g:
+#### Local Aliases
 
-<h4><a href="app:48b2dcf9bccacab62ec9d8a073d5edb8">app:48b2dcf9bccacab62ec9d8a073d5edb8</a></h4>
+If the Gist App isn't published to the Global Registry, users can create their own UX-friendly local alias with:
 
-    $ app run 48b2dcf9bccacab62ec9d8a073d5edb8
+    $ app alias my-alias 48b2dcf9bccacab62ec9d8a073d5edb8
 
-If an `appName` and `description` was specified, the publish script will also be published to our Global App Registry where it can be opened via the more human-friendly `appName`, e.g:
+Where they'll be able to use their alias instead of the Gist Id:
 
-<h4><a href="app://vuedesktop">app://vuedesktop</a></h4>
+    app://my-alias
+    $ app open my-alias
 
-    $ app open vuedesktop
+### Publishing to a GitHub Repo
 
-And be visible to everyone with the `app` tool installed by running:
+The same `/dist` folder that's published to Gists can also be published to a GitHub Repo like [github.com/mythz/vuedesktop](https://github.com/mythz/vuedesktop) which can be launched with the `<user>/<repo>` URL Scheme, e.g:
 
-    $ app open
+### [app://mythz/vuedesktop](app://mythz/vuedesktop)
 
-### Publishing self-encapsulated exe
+> Need to copy + paste URL in browser as GitHub markdown doesn't allow custom URL links
 
-Whilst our recommendation is to publish apps to gists where they can be launched using `app://` URL Schemes with auto updating, 
-you can also bundle & distribute the app tool with your App to allow it to be launched without needing the `app` dotnet tool installed:
+Or launched from the command-line:
 
-    $ md %USERPROFILE%\apps\vuedesktop && cd %USERPROFILE%\apps\vuedesktop
-    $ xcopy /E <project-path>\dist dist\ && cd dist
-    $ app --copy-self app
-    $ app shortcut -target "C:\Program Files\dotnet\dotnet.exe" ^
-      -arguments "^%USERPROFILE^%\apps\vuedesktop\app\app.dll ^%USERPROFILE^%\apps\vuedesktop\dist\app.settings" ^
-      -workdir "^%USERPROFILE^%\apps\vuedesktop\dist"
+    $ app open mythz/vuedesktop
 
-Escaping `^%` will preserve the `%USERPROFILE%` environment variable within the shortcut, without it the shortcut will include your resolved home dir in its path.
+Users can also download and run a local copy launched with a Windows Shortcut with this 1-liner:
 
-This will create a shortcut that will launch the app using your local `app` install instead of requiring users to install the `app` dotnet tool.
+    $ app download mythz/vuedesktop && cd vuedesktop && app shortcut
 
-The app can then be installed on other PC's by copying (or extracting) it to their `%USERPROFILE%\apps\vuedesktop` folder & the Shortcut copied to their Desktop for easy access.
+This will download this repo and create a **Vue Desktop** Windows Shortcut you can use to launch this App:
 
-You can later change which launch command the Shortcut uses by changing the **Target** in the Shortcut's **Properties**:
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/vue-desktop/vuedesktop-dist.png)
 
-![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/vue-desktop/vuedesktop-shortcut.png)
+### Publish to .zip
+
+The `/dist` folder can also be zipped and distributed that way, by running:
+
+    $ npm run publish-zip
+
+In which case it can be extracted and launched by running the `app` command in the App's folder:
+
+    $ cd AppDir
+    $ app
+
+But if you're going to run from a local folder (where `app://` isn't available), you'll likely want to create a Windows Shortcut:
+
+    $ app shortcut
+
+That Users can copy to their Desktop or pin to their Taskbar for easy access.
+
+### Publishing self-encapsulated .zip
+
+By having the `app` tool installed, users benefit from ultra small (e.g. **15kb**) downloads whose tiny footprints allows for auto-updating with each App launch so they have access to new features as soon as they're available. Users will also be able to update to the Chromium version used to run all their Sharp Desktop Apps by updating the `app` tool:
+
+    $ dotnet tool update -g app
+
+But if preferred, App's can also bundled and distributed with the `app` tool so they can be run without needing the `app` tool installed and distributed Apps are pinned to a specific Chromium version.
+
+You can create self-encapsulated bundles with the `publish-exe` script:
+
+    $ npm run publish-exe
+
+This will generate 2 files:
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/vue-desktop/vuedesktop-publish-exe.png)
+
+The `*.zip` contains both the `/dist` of your App and the `app` Chromium runtime as well as a convenience [install.ps1](https://github.com/NetCoreTemplates/vue-desktop/blob/master/scripts/install.ps1) script that users can use to effortlessly install the App with the `Win+R` shortcut to bring up Windows **Run** dialog then pasting this powershell cmd-let with the URL of your `install.ps1` script:
+
+    powershell Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://org.example/install.ps1'))
+
+![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/vue-desktop/vuedesktop-run-install.png)
+
+Here's a copy of `install.ps1` which downloads and extracts the App to the Users LocalApp Data and copies the Shortcut to the Desktop.
+Before publishing you'll need to update `$zipUrl` to point to the URL with your `*.zip`:
+
+```ps1
+$zipUrl  = "https://org.example/MyApp.zip"
+$appName = "MyApp"
+
+$TempFile = New-TemporaryFile
+Invoke-WebRequest $zipUrl -OutFile $TempFile
+
+$Zip = "$(Join-Path $TempFile.Directory.FullName $TempFile.BaseName).zip"
+Move-Item $TempFile $Zip
+
+Remove-Item $(Join-Path $TempFile.Directory.FullName $TempFile.BaseName) -Recurse -ErrorAction Ignore
+Expand-Archive -Force $Zip $(Join-Path $TempFile.Directory.FullName $TempFile.BaseName)
+
+$AppDir = $(Get-ChildItem -Path $(Join-Path $TempFile.Directory.FullName $TempFile.BaseName) | Select-Object -First 1)
+
+Remove-Item "$env:LOCALAPPDATA\$appName" -Recurse -ErrorAction Ignore
+Move-Item $AppDir.FullName "$env:LOCALAPPDATA\$appName"
+
+# Copy Shortcut to Desktop
+Copy-Item $env:LOCALAPPDATA\$appName\dist\*.lnk -Destination $env:USERPROFILE\Desktop 
+
+# Clean up
+Remove-Item $Zip -Recurse -ErrorAction Ignore
+Remove-Item $(Join-Path $TempFile.Directory.FullName $TempFile.BaseName) -Recurse -ErrorAction Ignore
+```
+
+Here's an example of an app we have published to our servers:
+
+    powershell Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://files.sharpscript.net/VueDesktop/install.ps1'))
+
