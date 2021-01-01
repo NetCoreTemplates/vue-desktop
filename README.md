@@ -517,8 +517,8 @@ export class FetchData extends Vue {
 
 The lightweight footprint of Vue Desktop Apps allows for multiple deployment options, including:
 
-  1. Publish to Gist
-  2. Publish to GitHub Repo
+  1. Publish to a Gist
+  2. Publish to a GitHub Repo
   3. Publish to .zip and run with `app` tool
   4. Publish to self-contained .zip (bundled with app tool)
 
