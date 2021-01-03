@@ -96,8 +96,8 @@ For the comparison we ran the `publish-app` script & Blazor's **Publish to Folde
 #### `15kb` Vue Desktop App vs `6207kb` Blazor WASM (413x smaller)
 
 The end result that even our **enhanced** Blazor WASM starting project template is **413.8x** or **2.6x** orders of magnitude smaller than Blazor WASM.
-A more apt comparison of its tiny footprint, is the enhanced Vue Desktop App is roughly equivalent to 
-[Blazor WASM's 12kb partial screenshot of its App](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-5.0): 
+A more apt comparison of its tiny footprint, is the enhanced Vue Desktop App is over 4x smaller than
+[Blazor WASM's 65kb partial screenshot of its App](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-5.0): 
 
 ![](https://docs.microsoft.com/en-us/aspnet/core/blazor/index/_static/dialog.png?view=aspnetcore-5.0)
 
