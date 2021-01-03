@@ -163,10 +163,6 @@ To remove friction & barriers to adoption all [app](https://docs.servicestack.ne
 [x](https://docs.servicestack.net/dotnet-tool) dotnet tools used to run all [Sharp and Gist Desktop Apps](https://sharpscript.net/sharp-apps/) 
 utilize an unrestricted suite of [ServiceStack](https://servicestack.net) Software that can be developed & distributed free without a commercial license.
 
-Should it be needed if exceeding [free-quotas](https://servicestack.net/download#free-quotas) (most [Sharp Apps](https://sharpscript.net/) don't) 
-when developing locally as a .NET Core Web App (i.e. instead of running using the `app` tool), you can bypass any restrictions 
-(from referencing ServiceStack's commercial NuGet packages) with a [Trial License Key](https://servicestack.net/trial).
-
 #### Alternative Modern Desktop Solutions
 
 We don't recommend this template for flagships Desktop App worked on by large teams, in that case you're better off building your own 
