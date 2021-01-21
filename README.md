@@ -34,7 +34,7 @@ Firefox invest each year in improving Web & browser technologies will ensure the
 & improved unlike most Desktop UI Technologies. 
 
 
-## [vuedesktop.com](https://www.vuedesktop.com)
+# [vuedesktop.com](https://www.vuedesktop.com)
 
 ### Vue Desktop Apps
 
