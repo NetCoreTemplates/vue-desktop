@@ -36,7 +36,7 @@ Firefox invest each year in improving Web & browser technologies will ensure the
 
 ## [vuedesktop.com](https://www.vuedesktop.com)
 
-##### Vue Desktop Apps
+### Vue Desktop Apps
 
 - [Why Chromium Desktop Apps?](https://www.vuedesktop.com/#why-chromium-desktop-apps)
 - [Comparison with Blazor WASM](https://www.vuedesktop.com/#comparison-with-blazor-wasm)
@@ -48,7 +48,7 @@ Firefox invest each year in improving Web & browser technologies will ensure the
 - [Alternative Desktop Solutions](https://www.vuedesktop.com/#alternative-modern-desktop-solutions)
 - [Desktop or Server Apps](https://www.vuedesktop.com/#desktop-or-server-deployments)
 
-#### Gist Desktop Apps
+### Gist Desktop Apps
 
 - [Overview](https://www.vuedesktop.com/gist-desktop-apps)
 - [Ultra Lightweight](https://www.vuedesktop.com/gist-desktop-apps#ultra-lightweight-desktop-apps)
@@ -60,17 +60,17 @@ Firefox invest each year in improving Web & browser technologies will ensure the
 - [Cross Platform Support](https://www.vuedesktop.com/gist-desktop-apps#cross-platform-support)
 - [Always uses latest version](https://www.vuedesktop.com/gist-desktop-apps#always-uses-latest-version)
 
-#### Development Model
+### Development Model
 
 - [Overview](https://www.vuedesktop.com/development-model)
 - [Typed DTOs](https://www.vuedesktop.com/development-model#typed-dtos)
 - [AutoQuery Services](https://www.vuedesktop.com/development-model#autoquery-services)
 
-#### Native Win32 API Interop
+### Native Win32 API Interop
 
 - [Overview](https://www.vuedesktop.com/native-win32-interop)
 
-#### Publishing Desktop Apps
+### Publishing Desktop Apps
 
 - [Overview](https://www.vuedesktop.com/publishing-desktop-apps)
 - [Creating Windows Shortcuts](https://www.vuedesktop.com/publishing-desktop-apps#creating-windows-shortcuts)
