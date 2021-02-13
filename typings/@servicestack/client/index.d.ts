@@ -307,6 +307,7 @@ export declare class JsonServiceClient {
     cookies: {
         [index: string]: Cookie;
     };
+    parseJson: (res: Response) => Promise<any>;
     static toBase64: (rawString: string) => string;
     constructor(baseUrl?: string);
     setCredentials(userName: string, password: string): void;
@@ -330,6 +331,7 @@ export declare class JsonServiceClient {
     toAbsoluteUrl(relativeOrAbsoluteUrl: string): string;
     deleteCookie(name: string): void;
     private createRequest({method, request, url, args, body});
+    private json(res);
     private createResponse<T>(res, request);
     private handleError(holdRes, res, type?);
     send<T>(method: string, request: any | null, args?: any, url?: string): Promise<T>;
@@ -337,45 +339,49 @@ export declare class JsonServiceClient {
     sendRequest<T>(info: ISendRequest): Promise<T>;
     raiseError(res: Response, error: any): any;
 }
-export declare const isFormData: (body: any) => boolean;
-export declare const toCamelCase: (s: string) => string;
-export declare const toPascalCase: (s: string) => string;
-export declare const sanitize: (status: any) => any;
-export declare const nameOf: (o: any) => any;
-export declare const css: (selector: string | NodeListOf<Element>, name: string, value: string) => void;
-export declare const splitOnFirst: (s: string, c: string) => string[];
-export declare const splitOnLast: (s: string, c: string) => string[];
-export declare const humanize: (s: any) => any;
-export declare const queryString: (url: string) => any;
-export declare const combinePaths: (...paths: string[]) => string;
-export declare const createPath: (route: string, args: any) => string;
-export declare const createUrl: (route: string, args: any) => string;
-export declare const appendQueryString: (url: string, args: any) => string;
-export declare const bytesToBase64: (aBytes: Uint8Array) => string;
-export declare const stripQuotes: (s: string) => string;
-export declare const tryDecode: (s: string) => string;
-export declare const parseCookie: (setCookie: string) => Cookie;
-export declare const normalizeKey: (key: string) => string;
-export declare const normalize: (dto: any, deep?: boolean) => any;
-export declare const getField: (o: any, name: string) => any;
-export declare const parseResponseStatus: (json: string, defaultMsg?: any) => any;
+export declare function isFormData(body: any): boolean;
+export declare function toCamelCase(s: string): string;
+export declare function toPascalCase(s: string): string;
+export declare function sanitize(status: any): any;
+export declare function nameOf(o: any): any;
+export declare function css(selector: string | NodeListOf<Element>, name: string, value: string): void;
+export declare function splitOnFirst(s: string, c: string): string[];
+export declare function splitOnLast(s: string, c: string): string[];
+export declare function humanize(s: any): any;
+export declare function queryString(url: string): any;
+export declare function combinePaths(...paths: string[]): string;
+export declare function createPath(route: string, args: any): string;
+export declare function createUrl(route: string, args: any): string;
+export declare function appendQueryString(url: string, args: any): string;
+export declare function bytesToBase64(aBytes: Uint8Array): string;
+export declare function stripQuotes(s: string): string;
+export declare function tryDecode(s: string): string;
+export declare function parseCookie(setCookie: string): Cookie;
+export declare function normalizeKey(key: string): string;
+export declare function normalize(dto: any, deep?: boolean): any;
+export declare function getField(o: any, name: string): any;
+export declare function parseResponseStatus(json: string, defaultMsg?: any): any;
 export declare function toFormData(o: any): FormData;
 export declare function toObject(keys: any): {};
 export declare function errorResponseSummary(): any;
 export declare function errorResponseExcept(fieldNames: string[] | string): any;
 export declare function errorResponse(fieldName: string): any;
-export declare const toDate: (s: any) => Date;
-export declare const toDateFmt: (s: string) => string;
-export declare const padInt: (n: number) => string | number;
-export declare const dateFmt: (d?: Date) => string;
-export declare const dateFmtHM: (d?: Date) => string;
-export declare const timeFmt12: (d?: Date) => string;
+export declare function toDate(s: string | any): Date;
+export declare function toDateFmt(s: string): string;
+export declare function padInt(n: number): string | number;
+export declare function dateFmt(d?: Date): string;
+export declare function dateFmtHM(d?: Date): string;
+export declare function timeFmt12(d?: Date): string;
+export declare function toLocalISOString(d?: Date): string;
 export interface ICreateElementOptions {
     insertAfter?: Element | null;
 }
 export declare function createElement(tagName: string, options?: ICreateElementOptions, attrs?: any): HTMLElement;
 export declare function bootstrap(el?: Element): void;
-export declare function bindHandlers(handlers: any, el?: Document | Element): void;
+export interface IBindHandlersOptions {
+    events: string[];
+}
+export declare function bindHandlers(handlers: any, el?: Document | Element, opt?: IBindHandlersOptions): void;
 export interface IAjaxFormOptions {
     type?: string;
     url?: string;
@@ -402,13 +408,13 @@ export interface IValidation {
     };
     errorFilter?: (this: IValidation, message: string, errorCode: string, type: string) => void;
 }
-export declare const toVarNames: (names: string | string[]) => string[];
+export declare function toVarNames(names: string[] | string | null): string[];
 export declare function formSubmit(this: HTMLFormElement, options?: IAjaxFormOptions): Promise<any>;
 export declare function ajaxSubmit(f: HTMLFormElement, options?: IAjaxFormOptions): any;
 export declare function serializeForm(form: HTMLFormElement, contentType?: string | null): string | FormData;
-export declare const serializeToObject: (form: HTMLFormElement) => any;
+export declare function serializeToObject(form: HTMLFormElement): any;
 export declare function serializeToUrlEncoded(form: HTMLFormElement): string;
-export declare const serializeToFormData: (form: HTMLFormElement) => FormData;
+export declare function serializeToFormData(form: HTMLFormElement): FormData;
 export declare function triggerEvent(el: Element, name: string, data?: any): void;
 export declare function populateForm(form: HTMLFormElement, model: any): void;
 export declare function trimEnd(s: string, c: string): string;
@@ -472,3 +478,6 @@ export declare class NavOptions {
     constructor(init?: Partial<NavOptions>);
 }
 export declare function classNames(...args: any[]): string;
+export declare function fromXsdDuration(xsd: string): number;
+export declare function toXsdDuration(time: number): string;
+export declare function toTimeSpanFmt(time: number): string;
