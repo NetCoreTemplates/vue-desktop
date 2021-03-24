@@ -1,4 +1,3 @@
-import 'fetch-everywhere';
 export interface IReturnVoid {
     createResponse(): any;
 }
@@ -128,7 +127,7 @@ export interface IReconnectServerEventsOptions {
 export declare enum ReadyState {
     CONNECTING = 0,
     OPEN = 1,
-    CLOSED = 2,
+    CLOSED = 2
 }
 export interface IEventSourceStatic extends EventTarget {
     new (url: string, eventSourceInitDict?: IEventSourceInit): IEventSourceStatic;
@@ -183,6 +182,7 @@ export declare class ServerEventsClient {
     withCredentials: boolean;
     constructor(baseUrl: string, channels: string[], options?: IEventSourceOptions, eventSource?: IEventSourceStatic);
     onMessage: (e: IOnMessageEvent) => void;
+    _onMessage: (e: IOnMessageEvent) => void;
     onError: (error?: any) => void;
     getEventSourceOptions(): {
         withCredentials: boolean;
@@ -330,12 +330,12 @@ export declare class JsonServiceClient {
     createUrlFromDto<T>(method: string, request: IReturn<T>): string;
     toAbsoluteUrl(relativeOrAbsoluteUrl: string): string;
     deleteCookie(name: string): void;
-    private createRequest({method, request, url, args, body});
-    private json(res);
-    private createResponse<T>(res, request);
-    private handleError(holdRes, res, type?);
+    private createRequest;
+    private json;
+    private createResponse;
+    private handleError;
     send<T>(method: string, request: any | null, args?: any, url?: string): Promise<T>;
-    private sendBody<T>(method, request, body, args?);
+    private sendBody;
     sendRequest<T>(info: ISendRequest): Promise<T>;
     raiseError(res: Response, error: any): any;
 }
@@ -347,10 +347,11 @@ export declare function nameOf(o: any): any;
 export declare function css(selector: string | NodeListOf<Element>, name: string, value: string): void;
 export declare function splitOnFirst(s: string, c: string): string[];
 export declare function splitOnLast(s: string, c: string): string[];
-export declare function leftPart(strVal: string, needle: string): string;
-export declare function rightPart(strVal: string, needle: string): string;
-export declare function lastLeftPart(strVal: string, needle: string): string;
-export declare function lastRightPart(strVal: string, needle: string): string;
+export declare function leftPart(s: string, needle: string): string;
+export declare function rightPart(s: string, needle: string): string;
+export declare function lastLeftPart(s: string, needle: string): string;
+export declare function lastRightPart(s: string, needle: string): string;
+export declare function chop(str: string, len?: number): string;
 export declare function onlyProps(obj: {
     [index: string]: any;
 }, keys: string[]): {
@@ -490,3 +491,46 @@ export declare function classNames(...args: any[]): string;
 export declare function fromXsdDuration(xsd: string): number;
 export declare function toXsdDuration(time: number): string;
 export declare function toTimeSpanFmt(time: number): string;
+export declare function flatMap(f: Function, xs: any[]): any;
+export declare function uniq(xs: string[]): string[];
+export declare function enc(o: any): string;
+export declare function htmlAttrs(o: any): string;
+export declare function indexOfAny(str: string, needles: string[]): number;
+export declare function isNullOrEmpty(o: any): boolean;
+export declare function fromDateTime(dateTime: string): Date;
+export declare function toDateTime(date: Date): string;
+export declare function fromTimeSpan(xsdDuration: string): string;
+export declare function toTimeSpan(xsdDuration: string): string;
+export declare function fromGuid(xsdDuration: string): string;
+export declare function toGuid(xsdDuration: string): string;
+export declare function fromByteArray(base64: string): Uint8Array;
+export declare function toByteArray(bytes: Uint8Array): string;
+export declare function toBase64String(source: string): string;
+export declare class StringBuffer {
+    buffer_: string;
+    constructor(opt_a1?: any, ...var_args: any[]);
+    set(s: string): void;
+    append(a1: any, opt_a2?: any, ...var_args: any[]): this;
+    clear(): void;
+    getLength(): number;
+    toString(): string;
+}
+export declare class JSV {
+    static ESCAPE_CHARS: string[];
+    static encodeString(str: string): string;
+    static encodeArray(array: any[]): string;
+    static encodeObject(obj: any): string;
+    static stringify(obj: any): any;
+}
+export declare function uniqueKeys(rows: any[]): string[];
+export declare function alignLeft(str: string, len: number, pad?: string): string;
+export declare function alignCenter(str: string, len: number, pad?: string): string;
+export declare function alignRight(str: string, len: number, pad?: string): string;
+export declare function alignAuto(obj: any, len: number, pad?: string): string;
+export declare class Inspect {
+    static vars(obj: any): void;
+    static dump(obj: any): string;
+    static printDump(obj: any): void;
+    static dumpTable(rows: any[]): string;
+    static printDumpTable(rows: any[]): void;
+}
