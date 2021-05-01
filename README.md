@@ -10,11 +10,27 @@ packaged within a Chromium Web Vue UI within minutes!
 Create new project with [app dotnet tool](https://docs.servicestack.net/netcore-windows-desktop):
 
     $ dotnet tool install -g app
-    $ app new vue-desktop ProjectName
+    $ mkdir ProjectName && cd ProjectName
+    $ app new vue-desktop
 
 > YouTube: [youtu.be/kRnQSWdqH6U](https://youtu.be/kRnQSWdqH6U)
 
 [![](https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/app/vue-desktop/vuedesktop-screenshot.png)](https://youtu.be/kRnQSWdqH6U)
+
+### Development Workflow
+
+During development you can use the familiar & productive Web App development model by running TypeScript Watch and dotnet run in different terminals:
+
+    $ tsc -w
+    $ dotnet run
+
+Then open the Web App in your preferred browser for a productive Live Reload workflow.
+
+To run your app in a Desktop App locally, pack it then run it from the published `dist/` folder:
+
+    $ npm run pack-app
+    $ cd dist
+    $ app
 
 ### Why Chromium Desktop Apps?
 
