@@ -10,8 +10,13 @@ packaged within a Chromium Web Vue UI within minutes!
 Create new project with [app dotnet tool](https://docs.servicestack.net/netcore-windows-desktop):
 
     $ dotnet tool install -g app
-    $ mkdir ProjectName && cd ProjectName
-    $ app new vue-desktop
+    $ app new vue-desktop ProjectName
+
+Alternatively write new project files directly into an empty repository, using the Directory Name as the ProjectName:
+
+    $ git clone https://github.com/<User>/<ProjectName>.git
+    $ cd <ProjectName>
+    $ x new vue-desktop
 
 > YouTube: [youtu.be/kRnQSWdqH6U](https://youtu.be/kRnQSWdqH6U)
 
