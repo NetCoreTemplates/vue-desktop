@@ -16,11 +16,11 @@ import { QueryWeatherForecasts, WeatherForecast } from "../shared/dtos";
         
         <form class="form-inline mb-2" @submit.prevent="">
             <label for="txtId">Filters: </label>
-            <input class="form-control form-control-sm mx-1" type="number" placeholder="[Id]" v-model="id" @input="filter"> 
+            <input class="mx-1" type="number" placeholder="[Id]" v-model="id" @input="filter"> 
             <input type="date" v-model="afterDate" @change="filter">
             <input type="date" v-model="beforeDate" @change="filter">
-            <input class="form-control form-control-sm mx-1" type="number" placeholder="Above (C)" v-model="aboveTemp" @input="filter">
-            <input class="form-control form-control-sm mr-1" type="number" placeholder="Below (C)" v-model="belowTemp" @input="filter"> 
+            <input class="mx-1" type="number" placeholder="Above (C)" v-model="aboveTemp" @input="filter">
+            <input class="mr-1" type="number" placeholder="Below (C)" v-model="belowTemp" @input="filter"> 
             <button class="btn btn-secondary btn-sm" @click="reset">reset</button>
         </form>
     

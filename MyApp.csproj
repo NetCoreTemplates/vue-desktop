@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
     <ItemGroup>
@@ -9,10 +11,10 @@
         <PackageReference Include="ServiceStack.Server" Version="5.*" />
         <PackageReference Include="ServiceStack.OrmLite.Sqlite" Version="5.*" />
         <PackageReference Include="ServiceStack.Desktop" Version="5.*" />
-        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+        <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
     </ItemGroup>
 
     <Target Name="Bundle" BeforeTargets="AfterPublish">
-        <Exec Command="app run _bundle.ss -to /bin/Release/net5/publish/wwwroot" />
+        <Exec Command="app run _bundle.ss -to /bin/Release/net6.0/publish/wwwroot" />
     </Target>
 </Project>

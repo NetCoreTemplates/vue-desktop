@@ -21,9 +21,9 @@ namespace MyApp
             0x000000FF, 0x00000080, 0x00FF00FF, 0x00800080,
         };
 
-        public string chooseColor(ScriptScopeContext scope) => chooseColor(scope, "#ffffff");
+        public string? chooseColor(ScriptScopeContext scope) => chooseColor(scope, "#ffffff");
 
-        public string chooseColor(ScriptScopeContext scope, string defaultColor) => scope.DoWindow(w => {
+        public string? chooseColor(ScriptScopeContext scope, string defaultColor) => scope!.DoWindow(w => {
             var cc = new ChooseColor();
             cc.lStructSize = Marshal.SizeOf(cc);
             var lpCustColors = Marshal.AllocCoTaskMem(16 * sizeof(int));
@@ -37,7 +37,7 @@ namespace MyApp
                 cc.rgbResult = ColorTranslator.ToWin32(c);
 
                 if (!ChooseColor(ref cc)) 
-                    return (string) null;
+                    return (string?) null;
             
                 c = ColorTranslator.FromWin32(cc.rgbResult);
                 return ColorTranslator.ToHtml(c);
