@@ -4,7 +4,7 @@ import { routes } from '../shared/router';
 
 @Component({ template:`
 <div>
-    <div class="top-row pl-4 navbar navbar-dark">
+    <div class="top-row ps-4 navbar navbar-dark">
         <v-link tag="a" class="navbar-brand" to="/">My App</v-link>
         <button class="navbar-toggler" @click="toggleNavMenu()">
             <span class="navbar-toggler-icon"></span>

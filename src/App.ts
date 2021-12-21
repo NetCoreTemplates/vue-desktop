@@ -8,14 +8,14 @@ import { bus, store } from './shared';
     <div class="sidebar" :style="sidebarStyle">
         <nav-menu />
         
-        <div v-if="store.desktop" class="ml-5 mt-5">
+        <div v-if="store.desktop" class="ms-5 mt-5">
             <button class="btn btn-outline-light" @click="doColor()">Choose Color</button>
         </div>
     </div>
     
     <div class="main">
         <div class="top-row px-4">
-            <a href="https://sharpscript.net/sharp-apps/" target="_blank" class="ml-md-auto">About</a>
+            <a href="https://sharpscript.net/sharp-apps/" target="_blank" class="ms-md-auto">About</a>
         </div>
     
         <div class="content px-4">

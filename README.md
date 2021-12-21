@@ -12,6 +12,8 @@ Create new project with [app dotnet tool](https://docs.servicestack.net/netcore-
     $ dotnet tool install -g app
     $ app new vue-desktop ProjectName
 
+> requires latest app v6.x
+
 Alternatively write new project files directly into an empty repository, using the Directory Name as the ProjectName:
 
     $ git clone https://github.com/<User>/<ProjectName>.git
