@@ -7,10 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ServiceStack" Version="5.*" />
-        <PackageReference Include="ServiceStack.Server" Version="5.*" />
-        <PackageReference Include="ServiceStack.OrmLite.Sqlite" Version="5.*" />
-        <PackageReference Include="ServiceStack.Desktop" Version="5.*" />
+        <PackageReference Include="ServiceStack" Version="6.*" />
+        <PackageReference Include="ServiceStack.Server" Version="6.*" />
+        <PackageReference Include="ServiceStack.OrmLite.Sqlite" Version="6.*" />
+        <PackageReference Include="ServiceStack.Desktop" Version="6.*" />
         <PackageReference Include="System.Drawing.Common" Version="6.*" />
     </ItemGroup>
 
