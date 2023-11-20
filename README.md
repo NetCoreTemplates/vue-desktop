@@ -1,6 +1,6 @@
 # vue-desktop
 
-.NET 6.0 Vue Windows Desktop App Project Template.
+.NET 8.0 Vue Windows Desktop App Project Template.
 
 This Project Template lets you create .NET Core Vue Single Page Apps that can also be packaged & 
 deployed as [Gist Desktop Apps](https://sharpscript.net/sharp-apps/gist-desktop-apps) which is 
